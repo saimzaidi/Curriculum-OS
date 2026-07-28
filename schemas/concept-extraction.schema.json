@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ConceptExtractionResult",
+  "type": "object",
+  "required": [
+    "concepts",
+    "edges"
+  ],
+  "properties": {
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "client_id",
+          "title",
+          "description",
+          "difficulty",
+          "estimated_minutes",
+          "required",
+          "source_block_ids",
+          "learning_objectives",
+          "confidence"
+        ],
+        "properties": {
+          "client_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 2
+          },
+          "description": {
+            "type": "string"
+          },
+          "difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "estimated_minutes": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 600
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "exam_weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "source_block_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "learning_objectives": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_client_id",
+          "target_client_id",
+          "relation_type",
+          "confidence",
+          "rationale"
+        ],
+        "properties": {
+          "source_client_id": {
+            "type": "string"
+          },
+          "target_client_id": {
+            "type": "string"
+          },
+          "relation_type": {
+            "type": "string",
+            "enum": [
+              "prerequisite",
+              "part_of",
+              "reinforces",
+              "commonly_confused_with"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

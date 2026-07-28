@@ -1,0 +1,16 @@
+flowchart TD
+    A[Upload document] --> B[Validate file and hash]
+    B --> C[PyMuPDF preflight]
+    C --> D{Digital text quality}
+    D -->|Good| E[MinerU digital parser]
+    D -->|Poor| F{Page type}
+    F -->|Standard scan| G[MinerU OCR]
+    F -->|Urdu/Sindhi/Pashto| H[PaddleOCR]
+    F -->|Formula/table/diagram| I[Qwen OCR]
+    E --> J[Normalize blocks]
+    G --> J
+    H --> J
+    I --> J
+    J --> K[Quality checks]
+    K --> L[Persist source blocks]
+    L --> M[Embed and index]

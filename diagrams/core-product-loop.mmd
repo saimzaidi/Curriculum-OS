@@ -1,0 +1,10 @@
+flowchart LR
+    S[School sources] --> G[Curriculum graph]
+    G --> P[Initial plan]
+    P --> T[Teaching]
+    T --> F[Classroom feedback]
+    F --> M[Mastery and disruption model]
+    M --> R[Automatic replanning]
+    R --> P
+    P --> C[Lessons and assessments]
+    C --> O[Offline course pack]

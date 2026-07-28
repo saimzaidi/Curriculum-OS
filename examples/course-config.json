@@ -1,0 +1,25 @@
+{
+  "course": {
+    "name": "Grade XI Physics \u2014 Mechanics",
+    "grade": "XI",
+    "subject": "Physics",
+    "section": "A",
+    "language": "English",
+    "localization_region": "Karachi, Pakistan"
+  },
+  "calendar": {
+    "start_date": "2026-08-22",
+    "end_date": "2026-10-17",
+    "exam_date": "2026-10-20",
+    "session_days": [
+      "MONDAY",
+      "WEDNESDAY",
+      "FRIDAY"
+    ],
+    "session_minutes": 45,
+    "holidays": [
+      "2026-09-01"
+    ],
+    "revision_sessions": 2
+  }
+}

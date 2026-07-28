@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeneratedLesson",
+  "type": "object",
+  "required": [
+    "title",
+    "objectives",
+    "timed_segments",
+    "checks_for_understanding",
+    "differentiation",
+    "homework",
+    "source_block_ids"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "objectives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "timed_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "minutes",
+          "name",
+          "teacher_actions",
+          "student_actions"
+        ],
+        "properties": {
+          "minutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "teacher_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "student_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source_block_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "checks_for_understanding": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "differentiation": {
+      "type": "object",
+      "required": [
+        "below",
+        "on",
+        "advanced"
+      ],
+      "properties": {
+        "below": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "advanced": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "homework": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_block_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

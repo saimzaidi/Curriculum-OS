@@ -1,0 +1,156 @@
+{
+  "name": "CurriculumOS AI Agent Build Kit",
+  "version": "1.0.0",
+  "generated_date": "2026-07-28",
+  "file_count": 37,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 3472
+    },
+    {
+      "path": "README.md",
+      "bytes": 2492
+    },
+    {
+      "path": "diagrams/core-product-loop.mmd",
+      "bytes": 297
+    },
+    {
+      "path": "diagrams/document-ingestion.mmd",
+      "bytes": 486
+    },
+    {
+      "path": "diagrams/replanning-flow.mmd",
+      "bytes": 656
+    },
+    {
+      "path": "diagrams/system-architecture.mmd",
+      "bytes": 544
+    },
+    {
+      "path": "docs/00_PRODUCT_BRIEF.md",
+      "bytes": 2585
+    },
+    {
+      "path": "docs/01_MVP_SCOPE.md",
+      "bytes": 2088
+    },
+    {
+      "path": "docs/02_ARCHITECTURE.md",
+      "bytes": 3068
+    },
+    {
+      "path": "docs/03_TECH_STACK.md",
+      "bytes": 2302
+    },
+    {
+      "path": "docs/04_DOMAIN_MODEL.md",
+      "bytes": 2524
+    },
+    {
+      "path": "docs/05_DATABASE.md",
+      "bytes": 2906
+    },
+    {
+      "path": "docs/06_API_CONTRACTS.md",
+      "bytes": 2919
+    },
+    {
+      "path": "docs/07_AI_PIPELINES.md",
+      "bytes": 3390
+    },
+    {
+      "path": "docs/08_SCHEDULING_ENGINE.md",
+      "bytes": 3055
+    },
+    {
+      "path": "docs/09_DOCUMENT_INGESTION.md",
+      "bytes": 2141
+    },
+    {
+      "path": "docs/10_FRONTEND_UX.md",
+      "bytes": 2499
+    },
+    {
+      "path": "docs/11_OFFLINE_EXPORT.md",
+      "bytes": 1577
+    },
+    {
+      "path": "docs/12_TESTING_EVALUATION.md",
+      "bytes": 2542
+    },
+    {
+      "path": "docs/13_SECURITY_PRIVACY.md",
+      "bytes": 2070
+    },
+    {
+      "path": "docs/14_DEPLOYMENT.md",
+      "bytes": 2020
+    },
+    {
+      "path": "docs/15_IMPLEMENTATION_PLAN.md",
+      "bytes": 2958
+    },
+    {
+      "path": "docs/16_DEFINITION_OF_DONE.md",
+      "bytes": 1938
+    },
+    {
+      "path": "docs/17_DEMO_SCRIPT.md",
+      "bytes": 1883
+    },
+    {
+      "path": "docs/18_BACKLOG.md",
+      "bytes": 1058
+    },
+    {
+      "path": "docs/19_ADRS.md",
+      "bytes": 1998
+    },
+    {
+      "path": "docs/20_REFERENCES.md",
+      "bytes": 1540
+    },
+    {
+      "path": "docs/21_AGENT_TASK_BOARD.md",
+      "bytes": 2557
+    },
+    {
+      "path": "docs/22_PROMPT_SPECIFICATIONS.md",
+      "bytes": 2246
+    },
+    {
+      "path": "examples/course-config.json",
+      "bytes": 501
+    },
+    {
+      "path": "examples/quiz-results.csv",
+      "bytes": 249
+    },
+    {
+      "path": "schemas/concept-extraction.schema.json",
+      "bytes": 2658
+    },
+    {
+      "path": "schemas/generated-lesson.schema.json",
+      "bytes": 2283
+    },
+    {
+      "path": "schemas/schedule-input.schema.json",
+      "bytes": 704
+    },
+    {
+      "path": "templates/.env.example",
+      "bytes": 578
+    },
+    {
+      "path": "templates/agent-first-command.md",
+      "bytes": 598
+    },
+    {
+      "path": "templates/docker-compose.example.yml",
+      "bytes": 1097
+    }
+  ]
+}

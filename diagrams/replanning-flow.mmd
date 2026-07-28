@@ -1,0 +1,22 @@
+flowchart TD
+    A[Published schedule] --> B[Classroom event]
+    B --> C{Trigger}
+    C -->|Quiz failure| D[Compute concept mastery]
+    C -->|Cancelled class| E[Reduce available sessions]
+    C -->|Ran over| F[Increase remaining duration]
+    C -->|Teacher lock| G[Add hard constraint]
+
+    D --> H[Propose remediation]
+    E --> I[Compile solver input]
+    F --> I
+    G --> I
+    H --> I
+
+    I --> J[OR-Tools CP-SAT]
+    J --> K{Feasible?}
+    K -->|Yes| L[Create schedule version]
+    K -->|No| M[Generate resolution options]
+    L --> N[Generate machine diff]
+    N --> O[LLM explains actual diff]
+    O --> P[Teacher approves]
+    P --> Q[Publish]

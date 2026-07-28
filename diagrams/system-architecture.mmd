@@ -1,0 +1,21 @@
+flowchart LR
+    U[Teacher or Coordinator] --> W[Next.js Web App]
+    W --> A[FastAPI]
+    A --> DB[(PostgreSQL + pgvector)]
+    A --> OSS[Alibaba OSS]
+    A --> PF[Prefect]
+
+    PF --> IW[Ingestion Worker]
+    PF --> GW[Generation Worker]
+    PF --> EW[Export Worker]
+
+    IW --> MINERU[MinerU]
+    IW --> POCR[PaddleOCR]
+    IW --> QOCR[Qwen OCR]
+    GW --> QWEN[Qwen Models]
+    GW --> RETRIEVE[Hybrid Retrieval + Reranking]
+
+    A --> GRAPH[NetworkX Graph Service]
+    A --> SOLVER[OR-Tools CP-SAT]
+
+    EW --> PACK[Static HTML + Paged.js]

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CurriculumOS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <div id="loading-overlay" class="loading-overlay hidden">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+  </div>
+  <div id="auth-view" class="auth-shell"><section class="brand-panel"><p class="eyebrow">CURRICULUM INTELLIGENCE</p><h1>Teach the plan.<br><em>Adapt to reality.</em></h1><p>CurriculumOS connects source material, learning dependencies, classroom evidence, and tomorrow's timetable.</p><div class="proof"><span>⌘</span><p><b>Source-grounded</b><br>Every teaching decision remains traceable.</p></div></section><section class="auth-card"><p class="eyebrow">WELCOME</p><h2 id="auth-title">Sign in</h2><p class="muted" id="auth-copy">Access your teaching workspace.</p><form id="auth-form"><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><label class="signup-only">Display name<input name="display_name" autocomplete="name"></label><button id="auth-submit">Sign in</button></form><button class="text-button" id="auth-toggle">Need an account? Create one</button><p class="hint">Use the local demo credentials from the README only in development.</p><p id="auth-error" class="error-text" aria-live="polite"></p></section></div>
+  <div id="app-view" hidden>
+    <aside><a class="wordmark" href="#"><span>◈</span> CurriculumOS</a><nav><button data-view="overview" class="nav active">Overview</button><button data-view="sources" class="nav">Sources</button><button data-view="graph" class="nav">Curriculum map</button><button data-view="schedule" class="nav">Teaching plan</button><button data-view="materials" class="nav">Materials</button><button data-view="feedback" class="nav">Classroom signal</button></nav><div class="sidebar-bottom"><button id="export-button" class="outline">⇩ Export offline pack</button><button id="sign-out" class="text-button">Sign out</button></div></aside>
+    <main><header class="topbar"><div><p class="eyebrow" id="course-meta">YOUR WORKSPACE</p><h1 id="course-name">Loading…</h1></div><div class="top-actions"><span id="sync-state" class="status-dot">● Synced</span><button id="refresh-button" class="icon-button" title="Refresh">↻</button><div class="avatar" id="avatar">AK</div></div></header>
+      <section id="overview" class="view active"></section><section id="sources" class="view"></section><section id="graph" class="view"></section><section id="schedule" class="view"></section><section id="materials" class="view"></section><section id="feedback" class="view"></section>
+    </main>
+  </div>
+  <div id="toast" role="status"></div><script src="app.js"></script>
+</body></html>

@@ -1,156 +1,300 @@
 {
-  "name": "CurriculumOS AI Agent Build Kit",
-  "version": "1.0.0",
-  "generated_date": "2026-07-28",
-  "file_count": 37,
+  "name": "CurriculumOS",
+  "version": "0.2.0",
+  "generated_date": "2026-07-29",
+  "file_count": 73,
   "files": [
+    {
+      "path": ".env.example",
+      "bytes": 502
+    },
     {
       "path": "AGENTS.md",
       "bytes": 3472
     },
     {
-      "path": "README.md",
-      "bytes": 2492
+      "path": "apps\\api\\app\\__init__.py",
+      "bytes": 31
     },
     {
-      "path": "diagrams/core-product-loop.mmd",
+      "path": "apps\\api\\app\\auth.py",
+      "bytes": 3470
+    },
+    {
+      "path": "apps\\api\\app\\config.py",
+      "bytes": 1511
+    },
+    {
+      "path": "apps\\api\\app\\db.py",
+      "bytes": 1219
+    },
+    {
+      "path": "apps\\api\\app\\errors.py",
+      "bytes": 1197
+    },
+    {
+      "path": "apps\\api\\app\\main.py",
+      "bytes": 28083
+    },
+    {
+      "path": "apps\\api\\app\\rag_anything_adapter.py",
+      "bytes": 2218
+    },
+    {
+      "path": "apps\\api\\app\\retrieval.py",
+      "bytes": 4847
+    },
+    {
+      "path": "apps\\api\\app\\schemas.py",
+      "bytes": 2391
+    },
+    {
+      "path": "apps\\api\\app\\services\\__init__.py",
+      "bytes": 3162
+    },
+    {
+      "path": "apps\\api\\app\\services\\assessments.py",
+      "bytes": 4360
+    },
+    {
+      "path": "apps\\api\\app\\services\\common.py",
+      "bytes": 2077
+    },
+    {
+      "path": "apps\\api\\app\\services\\concepts.py",
+      "bytes": 7365
+    },
+    {
+      "path": "apps\\api\\app\\services\\courses.py",
+      "bytes": 1122
+    },
+    {
+      "path": "apps\\api\\app\\services\\dashboard.py",
+      "bytes": 2756
+    },
+    {
+      "path": "apps\\api\\app\\services\\documents.py",
+      "bytes": 9668
+    },
+    {
+      "path": "apps\\api\\app\\services\\export.py",
+      "bytes": 6233
+    },
+    {
+      "path": "apps\\api\\app\\services\\lessons.py",
+      "bytes": 5424
+    },
+    {
+      "path": "apps\\api\\app\\services\\mastery.py",
+      "bytes": 2974
+    },
+    {
+      "path": "apps\\api\\app\\services\\scheduling.py",
+      "bytes": 12756
+    },
+    {
+      "path": "apps\\web\\public\\app.js",
+      "bytes": 30275
+    },
+    {
+      "path": "apps\\web\\public\\index.html",
+      "bytes": 2946
+    },
+    {
+      "path": "apps\\web\\public\\styles.css",
+      "bytes": 7726
+    },
+    {
+      "path": "diagrams\\core-product-loop.mmd",
       "bytes": 297
     },
     {
-      "path": "diagrams/document-ingestion.mmd",
+      "path": "diagrams\\document-ingestion.mmd",
       "bytes": 486
     },
     {
-      "path": "diagrams/replanning-flow.mmd",
+      "path": "diagrams\\replanning-flow.mmd",
       "bytes": 656
     },
     {
-      "path": "diagrams/system-architecture.mmd",
+      "path": "diagrams\\system-architecture.mmd",
       "bytes": 544
     },
     {
-      "path": "docs/00_PRODUCT_BRIEF.md",
+      "path": "docs\\00_PRODUCT_BRIEF.md",
       "bytes": 2585
     },
     {
-      "path": "docs/01_MVP_SCOPE.md",
+      "path": "docs\\01_MVP_SCOPE.md",
       "bytes": 2088
     },
     {
-      "path": "docs/02_ARCHITECTURE.md",
+      "path": "docs\\02_ARCHITECTURE.md",
       "bytes": 3068
     },
     {
-      "path": "docs/03_TECH_STACK.md",
+      "path": "docs\\03_TECH_STACK.md",
       "bytes": 2302
     },
     {
-      "path": "docs/04_DOMAIN_MODEL.md",
+      "path": "docs\\04_DOMAIN_MODEL.md",
       "bytes": 2524
     },
     {
-      "path": "docs/05_DATABASE.md",
+      "path": "docs\\05_DATABASE.md",
       "bytes": 2906
     },
     {
-      "path": "docs/06_API_CONTRACTS.md",
+      "path": "docs\\06_API_CONTRACTS.md",
       "bytes": 2919
     },
     {
-      "path": "docs/07_AI_PIPELINES.md",
+      "path": "docs\\07_AI_PIPELINES.md",
       "bytes": 3390
     },
     {
-      "path": "docs/08_SCHEDULING_ENGINE.md",
+      "path": "docs\\08_SCHEDULING_ENGINE.md",
       "bytes": 3055
     },
     {
-      "path": "docs/09_DOCUMENT_INGESTION.md",
+      "path": "docs\\09_DOCUMENT_INGESTION.md",
       "bytes": 2141
     },
     {
-      "path": "docs/10_FRONTEND_UX.md",
+      "path": "docs\\10_FRONTEND_UX.md",
       "bytes": 2499
     },
     {
-      "path": "docs/11_OFFLINE_EXPORT.md",
+      "path": "docs\\11_OFFLINE_EXPORT.md",
       "bytes": 1577
     },
     {
-      "path": "docs/12_TESTING_EVALUATION.md",
+      "path": "docs\\12_TESTING_EVALUATION.md",
       "bytes": 2542
     },
     {
-      "path": "docs/13_SECURITY_PRIVACY.md",
+      "path": "docs\\13_SECURITY_PRIVACY.md",
       "bytes": 2070
     },
     {
-      "path": "docs/14_DEPLOYMENT.md",
+      "path": "docs\\14_DEPLOYMENT.md",
       "bytes": 2020
     },
     {
-      "path": "docs/15_IMPLEMENTATION_PLAN.md",
+      "path": "docs\\15_IMPLEMENTATION_PLAN.md",
       "bytes": 2958
     },
     {
-      "path": "docs/16_DEFINITION_OF_DONE.md",
+      "path": "docs\\16_DEFINITION_OF_DONE.md",
       "bytes": 1938
     },
     {
-      "path": "docs/17_DEMO_SCRIPT.md",
+      "path": "docs\\17_DEMO_SCRIPT.md",
       "bytes": 1883
     },
     {
-      "path": "docs/18_BACKLOG.md",
+      "path": "docs\\18_BACKLOG.md",
       "bytes": 1058
     },
     {
-      "path": "docs/19_ADRS.md",
+      "path": "docs\\19_ADRS.md",
       "bytes": 1998
     },
     {
-      "path": "docs/20_REFERENCES.md",
+      "path": "docs\\20_REFERENCES.md",
       "bytes": 1540
     },
     {
-      "path": "docs/21_AGENT_TASK_BOARD.md",
+      "path": "docs\\21_AGENT_TASK_BOARD.md",
       "bytes": 2557
     },
     {
-      "path": "docs/22_PROMPT_SPECIFICATIONS.md",
+      "path": "docs\\22_PROMPT_SPECIFICATIONS.md",
       "bytes": 2246
     },
     {
-      "path": "examples/course-config.json",
+      "path": "examples\\course-config.json",
       "bytes": 501
     },
     {
-      "path": "examples/quiz-results.csv",
+      "path": "examples\\mechanics-browser-demo.txt",
+      "bytes": 233
+    },
+    {
+      "path": "examples\\quiz-results.csv",
       "bytes": 249
     },
     {
-      "path": "schemas/concept-extraction.schema.json",
+      "path": "MANIFEST.json",
+      "bytes": 0
+    },
+    {
+      "path": "migrations\\001_initial.sql",
+      "bytes": 6020
+    },
+    {
+      "path": "migrations\\002_identity_and_audit.sql",
+      "bytes": 1352
+    },
+    {
+      "path": "migrations\\003_retrieval.sql",
+      "bytes": 246
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 620
+    },
+    {
+      "path": "README.md",
+      "bytes": 6115
+    },
+    {
+      "path": "requirements-rag-anything.txt",
+      "bytes": 57
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 178
+    },
+    {
+      "path": "schemas\\concept-extraction.schema.json",
       "bytes": 2658
     },
     {
-      "path": "schemas/generated-lesson.schema.json",
+      "path": "schemas\\generated-lesson.schema.json",
       "bytes": 2283
     },
     {
-      "path": "schemas/schedule-input.schema.json",
+      "path": "schemas\\schedule-input.schema.json",
       "bytes": 704
     },
     {
-      "path": "templates/.env.example",
+      "path": "scripts\\seed_demo.py",
+      "bytes": 5060
+    },
+    {
+      "path": "scripts\\verify_demo.py",
+      "bytes": 1587
+    },
+    {
+      "path": "templates\\.env.example",
       "bytes": 578
     },
     {
-      "path": "templates/agent-first-command.md",
+      "path": "templates\\agent-first-command.md",
       "bytes": 598
     },
     {
-      "path": "templates/docker-compose.example.yml",
+      "path": "templates\\docker-compose.example.yml",
       "bytes": 1097
+    },
+    {
+      "path": "tests\\integration\\test_vertical_slice.py",
+      "bytes": 10005
+    },
+    {
+      "path": "tests\\unit\\test_graph_and_schedule.py",
+      "bytes": 1372
     }
   ]
 }

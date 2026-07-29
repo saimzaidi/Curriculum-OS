@@ -1,9 +1,14 @@
-"""Concept graph generation, approval, and editing operations."""
+"""Concept graph generation, approval, and editing operations.
+
+Uses NetworkX for cycle detection, topological ordering, impact traversal,
+and dependency validation — matching the architecture spec.
+"""
 from __future__ import annotations
 
 import re
-from collections import defaultdict
 from typing import Any
+
+import networkx as nx
 
 from ..db import connect
 from ..errors import DomainError
@@ -26,27 +31,83 @@ def _concept_out(item: dict[str, Any]) -> dict[str, Any]:
     return item
 
 
-def _check_graph_cycle(course_id: str, candidate: tuple[str, str] | None = None) -> None:
-    graph = defaultdict(list)
+def _build_nx_graph(course_id: str, candidate: tuple[str, str] | None = None) -> nx.DiGraph:
+    """Build a NetworkX directed graph from all course concepts and approved prerequisite edges.
+
+    Isolated concepts (no edges) are included as nodes so that graph metrics,
+    topological ordering, and impact traversal cover the full concept set.
+    """
+    g = nx.DiGraph()
     with connect() as conn:
-        edges = conn.execute("SELECT source_concept_id,target_concept_id FROM concept_edges WHERE course_id = ? AND relation_type = 'prerequisite' AND rejected = 0", (course_id,)).fetchall()
-    for edge in edges:
-        graph[edge[0]].append(edge[1])
+        concept_ids = [r[0] for r in conn.execute(
+            "SELECT id FROM concepts WHERE course_id = ?", (course_id,)
+        ).fetchall()]
+        edges = conn.execute(
+            "SELECT source_concept_id, target_concept_id FROM concept_edges "
+            "WHERE course_id = ? AND relation_type = 'prerequisite' AND rejected = 0",
+            (course_id,),
+        ).fetchall()
+    g.add_nodes_from(concept_ids)
+    for e in edges:
+        g.add_edge(e[0], e[1])
     if candidate:
-        graph[candidate[0]].append(candidate[1])
-    visiting, visited = set(), set()
-    def visit(node: str) -> bool:
-        if node in visiting:
-            return True
-        if node in visited:
-            return False
-        visiting.add(node)
-        cyclic = any(visit(child) for child in graph[node])
-        visiting.remove(node)
-        visited.add(node)
-        return cyclic
-    if any(visit(node) for node in list(graph)):
-        raise DomainError("GRAPH_CYCLE", "Prerequisite edges must not contain a cycle.", status_code=422)
+        g.add_edge(candidate[0], candidate[1])
+    return g
+
+
+def _check_graph_cycle(course_id: str, candidate: tuple[str, str] | None = None) -> None:
+    """Validate prerequisite graph using NetworkX cycle detection."""
+    g = _build_nx_graph(course_id, candidate)
+    if not nx.is_directed_acyclic_graph(g):
+        cycles = list(nx.simple_cycles(g))
+        cycle_desc = " → ".join(cycles[0]) + " → " + cycles[0][0] if cycles else "unknown"
+        raise DomainError(
+            "GRAPH_CYCLE",
+            f"Prerequisite edges must not contain a cycle. Detected: {cycle_desc}",
+            status_code=422,
+        )
+
+
+def graph_topological_order(course_id: str) -> list[str]:
+    """Return concepts in topological (prerequisite-safe) order."""
+    g = _build_nx_graph(course_id)
+    return list(nx.topological_sort(g))
+
+
+def graph_impact(course_id: str, concept_id: str) -> list[str]:
+    """Return all concepts downstream of the given concept (impact traversal)."""
+    g = _build_nx_graph(course_id)
+    if concept_id not in g:
+        return []
+    return list(nx.descendants(g, concept_id))
+
+
+def graph_prerequisites(course_id: str, concept_id: str) -> list[str]:
+    """Return all transitive prerequisites of the given concept."""
+    g = _build_nx_graph(course_id)
+    if concept_id not in g:
+        return []
+    return list(nx.ancestors(g, concept_id))
+
+
+def graph_metrics(course_id: str) -> dict[str, Any]:
+    """Return graph metrics: node count, edge count, depth, density."""
+    g = _build_nx_graph(course_id)
+    if g.number_of_nodes() == 0:
+        return {"nodes": 0, "edges": 0, "depth": 0, "density": 0.0, "isolated": [], "roots": [], "leaves": []}
+    try:
+        depth = nx.dag_longest_path_length(g)
+    except nx.NetworkXError:
+        depth = 0
+    return {
+        "nodes": g.number_of_nodes(),
+        "edges": g.number_of_edges(),
+        "depth": depth,
+        "density": nx.density(g),
+        "isolated": list(nx.isolates(g)),
+        "roots": [n for n in g.nodes() if g.in_degree(n) == 0],
+        "leaves": [n for n in g.nodes() if g.out_degree(n) == 0],
+    }
 
 
 def generate_concept_graph(course_id: str) -> dict[str, Any]:

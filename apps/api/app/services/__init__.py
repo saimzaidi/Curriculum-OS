@@ -39,6 +39,10 @@ from .concepts import (  # noqa: F401
     edit_concept,
     generate_concept_graph,
     get_graph,
+    graph_impact,
+    graph_metrics,
+    graph_prerequisites,
+    graph_topological_order,
 )
 
 # ── scheduling ──────────────────────────────────────────────────────

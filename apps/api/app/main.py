@@ -338,6 +338,53 @@ def update_concept(course_id: str, concept_id: str, payload: ConceptEdit, reques
     return result
 
 
+@app.get(
+    "/api/v1/courses/{course_id}/concept-graph/topological-order",
+    tags=["concept-graph"],
+    summary="Get topological order",
+    description="Return concepts in prerequisite-safe (topological) order using NetworkX.",
+)
+def topological_order(course_id: str, user: dict = Depends(signed_in)) -> dict:
+    access(course_id, user)
+    order = services.graph_topological_order(course_id)
+    return {"course_id": course_id, "topological_order": order, "count": len(order)}
+
+
+@app.get(
+    "/api/v1/courses/{course_id}/concept-graph/metrics",
+    tags=["concept-graph"],
+    summary="Get graph metrics",
+    description="Return NetworkX graph metrics: node/edge count, depth, density, roots, leaves, isolated concepts.",
+)
+def concept_graph_metrics(course_id: str, user: dict = Depends(signed_in)) -> dict:
+    access(course_id, user)
+    return services.graph_metrics(course_id)
+
+
+@app.get(
+    "/api/v1/courses/{course_id}/concepts/{concept_id}/impact",
+    tags=["concept-graph"],
+    summary="Get concept impact",
+    description="Return all downstream concepts affected by changes to this concept (NetworkX descendants).",
+)
+def concept_impact(course_id: str, concept_id: str, user: dict = Depends(signed_in)) -> dict:
+    access(course_id, user)
+    impacted = services.graph_impact(course_id, concept_id)
+    return {"concept_id": concept_id, "impacted_concept_ids": impacted, "count": len(impacted)}
+
+
+@app.get(
+    "/api/v1/courses/{course_id}/concepts/{concept_id}/prerequisites",
+    tags=["concept-graph"],
+    summary="Get transitive prerequisites",
+    description="Return all transitive prerequisites of a concept (NetworkX ancestors).",
+)
+def concept_prerequisites(course_id: str, concept_id: str, user: dict = Depends(signed_in)) -> dict:
+    access(course_id, user)
+    prereqs = services.graph_prerequisites(course_id, concept_id)
+    return {"concept_id": concept_id, "prerequisite_ids": prereqs, "count": len(prereqs)}
+
+
 # ──────────────────────────────────────────────────────────────────────
 # Schedules
 # ──────────────────────────────────────────────────────────────────────

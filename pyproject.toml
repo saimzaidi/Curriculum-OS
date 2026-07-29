@@ -12,6 +12,7 @@ dependencies = [
   "ortools>=9.10,<10",
   "PyJWT>=2.10,<3",
   "turbovec==0.8.0",
+  "networkx>=3.0,<4",
 ]
 
 [project.optional-dependencies]

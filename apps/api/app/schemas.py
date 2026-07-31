@@ -78,3 +78,57 @@ class LessonGenerateRequest(BaseModel):
 class AssessmentGenerateRequest(BaseModel):
     concept_ids: list[str] = Field(min_length=1)
     title: str = "Source-grounded check"
+
+
+# ──────────────────────────────────────────────────────────────────────
+# Model Output Validation Schemas (representing files under schemas/)
+# ──────────────────────────────────────────────────────────────────────
+
+class TimedSegmentSchema(BaseModel):
+    minutes: int = Field(ge=1)
+    name: str
+    teacher_actions: list[str]
+    student_actions: list[str]
+    source_block_ids: list[str] = Field(default_factory=list)
+
+
+class DifferentiationSchema(BaseModel):
+    below: list[str]
+    on: list[str]
+    advanced: list[str]
+
+
+class GeneratedLessonSchema(BaseModel):
+    title: str
+    objectives: list[str] = Field(min_length=1)
+    timed_segments: list[TimedSegmentSchema]
+    checks_for_understanding: list[str]
+    differentiation: DifferentiationSchema
+    homework: list[str]
+    source_block_ids: list[str] = Field(min_length=1)
+
+
+class ExtractedConceptSchema(BaseModel):
+    client_id: str
+    title: str = Field(min_length=2)
+    description: str
+    difficulty: int = Field(ge=1, le=5)
+    estimated_minutes: int = Field(ge=5, le=600)
+    required: bool
+    exam_weight: float = Field(default=0.5, ge=0, le=1)
+    source_block_ids: list[str] = Field(min_length=1)
+    learning_objectives: list[str]
+    confidence: float = Field(default=1.0, ge=0, le=1)
+
+
+class ExtractedEdgeSchema(BaseModel):
+    source_client_id: str
+    target_client_id: str
+    relation_type: Literal["prerequisite", "part_of", "reinforces", "commonly_confused_with"]
+    confidence: float = Field(default=1.0, ge=0, le=1)
+    rationale: str
+
+
+class ConceptExtractionResultSchema(BaseModel):
+    concepts: list[ExtractedConceptSchema]
+    edges: list[ExtractedEdgeSchema]

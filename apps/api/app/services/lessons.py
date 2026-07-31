@@ -5,7 +5,7 @@ from typing import Any
 
 from ..db import connect
 from ..errors import DomainError
-from ..schemas import LessonGenerateRequest
+from ..schemas import GeneratedLessonSchema, LessonGenerateRequest
 from .common import PROMPT_VERSION, dump, load, new_id, now, require_course, row
 from .documents import list_source_blocks
 
@@ -45,6 +45,12 @@ def generate_lesson(course_id: str, entry_id: str, request: LessonGenerateReques
         "source_block_ids": concept["source_block_ids"],
         "localization_region": request.localization_region,
     }
+    # Validate against our strict GeneratedLessonSchema (corresponding to generated-lesson.schema.json)
+    try:
+        GeneratedLessonSchema.model_validate(content)
+    except Exception as exc:
+        raise DomainError("SCHEMA_VALIDATION_FAILED", "Generated lesson schema validation failed.", {"errors": str(exc)}, 500) from exc
+
     if sum(part["minutes"] for part in content["timed_segments"]) > minutes:
         raise DomainError("LESSON_DURATION_INVALID", "Generated lesson exceeds the scheduled session duration.", status_code=422)
     lesson_id, timestamp = existing["id"] if existing else new_id(), now()

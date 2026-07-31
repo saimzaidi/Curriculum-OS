@@ -12,7 +12,7 @@ import networkx as nx
 
 from ..db import connect
 from ..errors import DomainError
-from ..schemas import ConceptEdit
+from ..schemas import ConceptEdit, ConceptExtractionResultSchema
 from .common import PROMPT_VERSION, dump, load, new_id, now, require_course, row, rows
 from .documents import list_source_blocks
 
@@ -132,11 +132,47 @@ def generate_concept_graph(course_id: str) -> dict[str, Any]:
                 "source_block_ids": [block["id"]], "learning_objectives": [f"Explain {title}."], "confidence": 0.75,
                 "status": "proposed", "locked": 0, "created_at": now(),
             }
+            created.append(concept)
+
+        # Build validation payload representation corresponding to ConceptExtractionResultSchema
+        validation_payload = {
+            "concepts": [
+                {
+                    "client_id": c["id"],
+                    "title": c["title"],
+                    "description": c["description"],
+                    "difficulty": c["difficulty"],
+                    "estimated_minutes": c["estimated_minutes"],
+                    "required": bool(c["required"]),
+                    "exam_weight": c["exam_weight"],
+                    "source_block_ids": c["source_block_ids"],
+                    "learning_objectives": c["learning_objectives"],
+                    "confidence": c["confidence"]
+                } for c in created
+            ],
+            "edges": [
+                {
+                    "source_client_id": src["id"],
+                    "target_client_id": tgt["id"],
+                    "relation_type": "prerequisite",
+                    "confidence": 0.65,
+                    "rationale": "Sequential source order proposal."
+                } for src, tgt in zip(created, created[1:])
+            ]
+        }
+
+        # Validate against our strict JSON schema
+        try:
+            ConceptExtractionResultSchema.model_validate(validation_payload)
+        except Exception as exc:
+            raise DomainError("SCHEMA_VALIDATION_FAILED", "Generated concept graph schema validation failed.", {"errors": str(exc)}, 500) from exc
+
+        # Once schema validation passes, save to database
+        for concept in created:
             conn.execute(
                 """INSERT INTO concepts VALUES(:id,:course_id,:title,:normalized_title,:description,:difficulty,:estimated_minutes,:required,:exam_weight,:source_block_ids,:learning_objectives,:confidence,:status,:locked,:created_at)""",
                 {**concept, "source_block_ids": dump(concept["source_block_ids"]), "learning_objectives": dump(concept["learning_objectives"])},
             )
-            created.append(concept)
         for source, target in zip(created, created[1:]):
             conn.execute("INSERT INTO concept_edges VALUES(?,?,?,?,?,?,?,?,?)", (new_id(), course_id, source["id"], target["id"], "prerequisite", 0.65, "Sequential source order proposal.", 0, 0))
         record_id = new_id()

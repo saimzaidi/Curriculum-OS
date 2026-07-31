@@ -11,121 +11,121 @@ Use this file as the execution checklist.
 
 ## Phase 0
 
-- [ ] Initialize monorepo.
-- [ ] Add Docker Compose.
-- [ ] Add `.env.example`.
-- [ ] Add backend health endpoint.
-- [ ] Add frontend shell.
-- [ ] Add PostgreSQL and pgvector.
-- [ ] Add Alembic.
-- [ ] Add structured logging.
-- [ ] Add standard error envelope.
-- [ ] Add CI test workflow.
+- [x] Initialize monorepo.
+- [x] Add Docker Compose.
+- [x] Add `.env.example`.
+- [x] Add backend health endpoint.
+- [x] Add frontend shell.
+- [x] Add PostgreSQL and pgvector.
+- [x] Add Alembic.
+- [x] Add structured logging.
+- [x] Add standard error envelope.
+- [x] Add CI test workflow.
 
 ## Phase 1
 
-- [ ] Organization schema.
-- [ ] User and role schema.
-- [ ] Course schema.
-- [ ] Course setup API.
-- [ ] Course setup UI.
-- [ ] Object storage adapter.
-- [ ] Document upload API.
-- [ ] Job status API.
-- [ ] Upload progress UI.
+- [x] Organization schema.
+- [x] User and role schema.
+- [x] Course schema.
+- [x] Course setup API.
+- [x] Course setup UI.
+- [x] Object storage adapter.
+- [x] Document upload API.
+- [x] Job status API.
+- [x] Upload progress UI.
 
 ## Phase 2
 
-- [ ] PyMuPDF preflight.
-- [ ] Parser interface.
-- [ ] MinerU adapter.
-- [ ] PaddleOCR adapter.
-- [ ] Qwen OCR adapter.
-- [ ] Source block normalization.
-- [ ] Quality flags.
-- [ ] Source review UI.
-- [ ] Golden-document tests.
+- [x] PyMuPDF preflight.
+- [x] Parser interface.
+- [x] MinerU adapter.
+- [x] PaddleOCR adapter.
+- [x] Qwen OCR adapter.
+- [x] Source block normalization.
+- [x] Quality flags.
+- [x] Source review UI.
+- [x] Golden-document tests.
 
 ## Phase 3
 
-- [ ] Concept Pydantic schemas.
-- [ ] Concept extraction prompt.
-- [ ] Generation record.
-- [ ] Concept persistence.
-- [ ] Edge persistence.
-- [ ] NetworkX validation.
-- [ ] Graph APIs.
-- [ ] React Flow graph UI.
-- [ ] Approval workflow.
+- [x] Concept Pydantic schemas.
+- [x] Concept extraction prompt.
+- [x] Generation record.
+- [x] Concept persistence.
+- [x] Edge persistence.
+- [x] NetworkX validation.
+- [x] Graph APIs.
+- [x] React Flow graph UI.
+- [x] Approval workflow.
 
 ## Phase 4
 
-- [ ] Session calendar generation.
-- [ ] Solver input schema.
-- [ ] Initial CP-SAT model.
-- [ ] Hard constraints.
-- [ ] Soft objective.
-- [ ] Infeasibility report.
-- [ ] Schedule version storage.
-- [ ] Schedule UI.
-- [ ] Solver tests.
+- [x] Session calendar generation.
+- [x] Solver input schema.
+- [x] Initial CP-SAT model.
+- [x] Hard constraints.
+- [x] Soft objective.
+- [x] Infeasibility report.
+- [x] Schedule version storage.
+- [x] Schedule UI.
+- [x] Solver tests.
 
 ## Phase 5
 
-- [ ] Retrieval service.
-- [ ] Hybrid search.
-- [ ] Reranker adapter.
-- [ ] Lesson prompt.
-- [ ] Lesson validation.
-- [ ] Material persistence.
-- [ ] Teacher edit and lock.
-- [ ] Source citation UI.
+- [x] Retrieval service.
+- [x] Hybrid search.
+- [x] Reranker adapter.
+- [x] Lesson prompt.
+- [x] Lesson validation.
+- [x] Material persistence.
+- [x] Teacher edit and lock.
+- [x] Source citation UI.
 
 ## Phase 6
 
-- [ ] Assessment schema.
-- [ ] Question generator.
-- [ ] Rubric generator.
-- [ ] Question fingerprint.
-- [ ] Shallow-answer adversarial check.
-- [ ] Teacher approval.
-- [ ] Assessment export.
+- [x] Assessment schema.
+- [x] Question generator.
+- [x] Rubric generator.
+- [x] Question fingerprint.
+- [x] Shallow-answer adversarial check.
+- [x] Teacher approval.
+- [x] Assessment export.
 
 ## Phase 7
 
-- [ ] CSV importer.
-- [ ] Item-to-concept mapping.
-- [ ] Mastery calculation.
-- [ ] Confidence calculation.
-- [ ] Heatmap.
-- [ ] Remediation proposal.
-- [ ] Approval flow.
+- [x] CSV importer.
+- [x] Item-to-concept mapping.
+- [x] Mastery calculation.
+- [x] Confidence calculation.
+- [x] Heatmap.
+- [x] Remediation proposal.
+- [x] Approval flow.
 
 ## Phase 8
 
-- [ ] Replan triggers.
-- [ ] Minimum disruption penalties.
-- [ ] Schedule diff.
-- [ ] Compression categories.
-- [ ] Lock preservation.
-- [ ] Replan review UI.
-- [ ] Replan integration tests.
+- [x] Replan triggers.
+- [x] Minimum disruption penalties.
+- [x] Schedule diff.
+- [x] Compression categories.
+- [x] Lock preservation.
+- [x] Replan review UI.
+- [x] Replan integration tests.
 
 ## Phase 9
 
-- [ ] Static export schema.
-- [ ] Export worker.
-- [ ] Search index.
-- [ ] Print templates.
-- [ ] Paged.js rendering.
-- [ ] ZIP manifest.
-- [ ] Offline e2e test.
+- [x] Static export schema.
+- [x] Export worker.
+- [x] Search index.
+- [x] Print templates.
+- [x] Paged.js rendering.
+- [x] ZIP manifest.
+- [x] Offline e2e test.
 
 ## Phase 10
 
-- [ ] Demo seed.
-- [ ] Demo account.
-- [ ] Demo reset script.
-- [ ] Error recovery controls.
-- [ ] Observability dashboard.
-- [ ] Full rehearsal test.
+- [x] Demo seed.
+- [x] Demo account.
+- [x] Demo reset script.
+- [x] Error recovery controls.
+- [x] Observability dashboard.
+- [x] Full rehearsal test.

@@ -47,16 +47,27 @@ def import_results(course_id: str, assessment_id: str, contents: bytes) -> dict[
         if not conn.execute("SELECT 1 FROM assessments WHERE id=? AND course_id=?", (assessment_id, course_id)).fetchone():
             raise DomainError("ASSESSMENT_NOT_FOUND", "Assessment was not found.", status_code=404)
     try:
-        reader = csv.DictReader(io.StringIO(contents.decode("utf-8-sig")))
+        raw_csv = contents.decode("utf-8-sig")
+        reader = csv.DictReader(io.StringIO(raw_csv))
+        if reader.fieldnames is None:
+            raise ValueError("CSV headers missing or empty")
+        cleaned_fieldnames = [name.strip() for name in reader.fieldnames if name is not None]
+        reader.fieldnames = cleaned_fieldnames
         required = {"student_id", "assessment_item_id", "concept_id", "earned_points", "max_points"}
-        if set(reader.fieldnames or []) != required:
+        if set(cleaned_fieldnames) != required:
             raise ValueError("CSV headers must be student_id,assessment_item_id,concept_id,earned_points,max_points")
         attempts = []
         concept_ids = {item["id"] for item in get_graph(course_id)["concepts"]}
-        for line, item in enumerate(reader, 2):
+        for line, row_data in enumerate(reader, 2):
+            item = {k.strip(): v.strip() if isinstance(v, str) else v for k, v in row_data.items() if k is not None}
+            if not item.get("student_id"):
+                continue
             if item["concept_id"] not in concept_ids:
                 raise ValueError(f"line {line}: unknown concept_id")
-            earned, maximum = float(item["earned_points"]), float(item["max_points"])
+            try:
+                earned, maximum = float(item["earned_points"]), float(item["max_points"])
+            except ValueError:
+                raise ValueError(f"line {line}: invalid score format")
             if maximum <= 0 or earned < 0 or earned > maximum:
                 raise ValueError(f"line {line}: invalid score")
             attempts.append((new_id(), course_id, assessment_id, item["student_id"], item["assessment_item_id"], item["concept_id"], earned, maximum, now()))

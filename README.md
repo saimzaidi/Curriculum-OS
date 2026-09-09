@@ -140,3 +140,8 @@ CurriculumOS:
 10. exports the revised course as an offline HTML/PDF package.
 
 If this complete loop works reliably, the local product workflow is ready for rehearsal and demonstration.
+
+
+## Contributors
+Built jointly with Ali Abbas (@aliabbas6622).
+My role: Built the coverage tracking and weak-concept detection module — identifies gaps in curriculum coverage and flags weak concepts for review.
